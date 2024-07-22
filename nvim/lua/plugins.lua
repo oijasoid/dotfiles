@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	{
 		"williamboman/mason.nvim",
@@ -48,7 +48,6 @@ require('lazy').setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
 	},
-	"nvim-treesitter/playground",
 
 	{
 		'nvim-lualine/lualine.nvim',
