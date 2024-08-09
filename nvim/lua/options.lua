@@ -3,6 +3,8 @@ vim.opt.mouse = 'a'
 
 if vim.fn.has("win32") then
 	vim.opt.shell = 'powershell'
+	vim.opt.shellcmdflag="-c"
+	vim.opt.shellxquote=''
 end
 
 vim.opt.tabstop = 4
@@ -33,6 +35,8 @@ vim.opt.updatetime = 250
 vim.opt.list = true
 vim.opt.listchars = "trail:×,tab:· "
 vim.opt.fillchars = "eob: "
+
+vim.cmd("cd ~")
 
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, { command = 'checktime' })
 vim.api.nvim_create_autocmd({ 'TermOpen' }, { command = 'setlocal nonumber norelativenumber' })

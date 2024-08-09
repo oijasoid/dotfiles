@@ -8,3 +8,5 @@ require('telescope.telescope')
 require('colorscheme')
 require('options')
 require('keymaps')
+
+require('cmake.cmake')

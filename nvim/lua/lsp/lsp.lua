@@ -28,6 +28,22 @@ local on_attach = function(cllient, bufnr)
 			vim.diagnostic.open_float(nil, opts)
 		end
 	})
+
+	local opts = { noremap = true, silent = true, buffer = bufnr }
+
+	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+	vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+	vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+	vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+	vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+	vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+	vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format({ async = true }) end, opts)
 end
 
 --Show symbols for diagnostics instead of letters
@@ -39,14 +55,14 @@ end
 
 --Highlight line numbers instead of showing diagnostic symbols
 for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
-    vim.fn.sign_define("DiagnosticSign" .. diag, {
-        text = "",
-        texthl = "DiagnosticSign" .. diag,
-        linehl = "",
+	vim.fn.sign_define("DiagnosticSign" .. diag, {
+		text = "",
+		texthl = "DiagnosticSign" .. diag,
+		linehl = "",
 		--Use same diagnostic colors as the floating diagnostic window
 		--Other options are DiagnosticSign and DiagnosticVirtualText
-        numhl = "DiagnosticFloating" .. diag,
-    })
+		numhl = "DiagnosticFloating" .. diag,
+	})
 end
 
 vim.diagnostic.config({
@@ -95,4 +111,3 @@ lspconfig.cmake.setup({
 lspconfig.bashls.setup({
 	on_attach = on_attach,
 })
-lspconfig.texlab.setup {}
