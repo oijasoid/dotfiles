@@ -10,3 +10,4 @@ require('options')
 require('keymaps')
 
 require('cmake.cmake')
+require('vimtex.vimtex')

@@ -22,6 +22,8 @@ vim.keymap.set('n', '<leader>j', '<C-w>j', opts)
 vim.keymap.set('n', '<leader>k', '<C-w>k', opts)
 vim.keymap.set('n', '<leader>l', '<C-w>l', opts)
 
+vim.keymap.set('n', '<C-c>', ':nohls<Enter>', opts)
+
 vim.keymap.set('t', '<C-c>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-j>', '<down>', opts)
 vim.keymap.set('t', '<C-k>', '<up>', opts)
@@ -33,4 +35,4 @@ vim.keymap.set('n', '<leader>ff', telescope.find_files, opts)
 vim.keymap.set('n', '<leader>fb', telescope.buffers, opts)
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, opts)
 
-vim.keymap.set('n', '<leader>t', function() Terminal(0) end, opts)
+vim.keymap.set('n', '<leader>t', function() Terminal(1) end, opts)

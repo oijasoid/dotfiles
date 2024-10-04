@@ -1,6 +1,12 @@
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.mouse = 'a'
 
+vim.opt.encoding = 'utf-8'
+
+vim.cmd("filetype plugin on")
+vim.cmd("filetype indent on")
+vim.cmd("syntax enable")
+
 if vim.fn.has("win32") then
 	vim.opt.shell = 'powershell'
 	vim.opt.shellcmdflag="-c"
@@ -18,8 +24,8 @@ vim.opt.cursorline = false
 vim.opt.showmode = false
 
 vim.opt.incsearch = true
-vim.opt.hlsearch = false
-vim.opt.ignorecase = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = false
 vim.opt.smartcase = true
 
 vim.opt.numberwidth = 1

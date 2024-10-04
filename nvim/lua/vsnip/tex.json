@@ -1,0 +1,172 @@
+{
+	"Documentstart": {
+		"prefix": ["doc"],
+		"body": [
+			"\\documentclass[${1:12pt}, ${2:a4paper}]{${3:report}}",
+			"\\title{$4}",
+			"\\author{$5}",
+			"\\date{${6:\\today}}",
+			"\\begin{$7}",
+			"\t$0",
+			"\\end{$7}"
+		],
+		"description": "LaTeX DocumentClass."
+	},
+	"IncludePackage": {
+		"prefix": ["pkg"],
+		"body": "\\usepackage${1:[$2]}{$3}$0",
+		"description": "Include a LaTeX package."
+	},
+	"Tikz": {
+		"prefix": ["tikz"],
+		"body": "\\usepackage{tikz}$0"
+	},
+	"CircuiTikz": {
+		"prefix": ["ctikz"],
+		"body": "\\usepackage[${1:american}]{circuitikz}$0"
+	},
+	"Geometry": {
+		"prefix": ["geom"],
+		"body": "\\usepackage[${1:a4paper}, ${2:margin=${3:1}in}$4]{geometry}$0"
+	},
+	"PgfPlots": {
+		"prefix": ["pgfp"],
+		"body": "\\usepackage{pgfplots}$0"
+	},
+	"Begin / End": {
+		"prefix": ["beg"],
+		"body": [
+			"\\begin{$1}",
+			"\t$2",
+			"\\end{$1}$0"
+		]
+	},
+	"InlineEqn": {
+		"prefix": ["im"],
+		"body": "\\($1\\)$0",
+		"description": "Creates an Inline Equation."
+	},
+	"DisplayEqn": {
+		"prefix": ["dm"],
+		"body": "\\[$1\\]$0",
+		"description": "Creates a Display Equation."
+	},
+	"Subscript": {
+		"prefix": ["ss"],
+		"body": "_{$1}$0",
+		"description": "Adds a subscript."
+	},
+	"Superscript": {
+		"prefix": ["su"],
+		"body": "^{$1}$0",
+		"description": "Adds a superscript."
+	},
+	"Dots": {
+		"prefix": ["dots"],
+		"body": "\\dots"
+	},
+	"Integral": {
+		"prefix": ["int"],
+		"body": "\\int_{$1}^{$2} $3\\,$0"
+	},
+	"Derivative": {
+		"prefix": ["der"],
+		"body": "\\frac{d${1:^{$2\\}}}{d${3:^{$4\\}}}$0"
+	},
+	"Partial Derivative": {
+		"prefix": ["pder"],
+		"body": "\\frac{\\partial${1:^{$2\\}}}{\\partial${3:^{$4\\}}}$0"
+	},
+	"Limit": {
+		"prefix": ["lim"],
+		"body": "\\lim_{$1\\to$2} $0"
+	},
+	"Product": {
+		"prefix": ["pro"],
+		"body": "\\prod_{$1}^{$2} $0"
+	},
+	"Summation": {
+		"prefix": ["summ"],
+		"body": "\\sum_{$1}^{$2} $0"
+	},
+	"Fraction": {
+		"prefix": ["ff"],
+		"body": "\\frac{$1}{$2}$0"
+	},
+	"Infinity": {
+		"prefix": ["inf"],
+		"body": "\\infty"
+	},
+	"Set": {
+		"prefix": ["set"],
+		"body": "\\mathbf{$1}$0"
+	},
+	"Roster Set": {
+		"prefix": ["sr"],
+		"body": "\\{$1 \\}$0"
+	},
+	"Set Builder": {
+		"prefix": ["sb"],
+		"body": "\\{$1|$2 \\}$0"
+	},
+	"link": {
+		"prefix": "link",
+		"body": "[$TM_FILENAME_BASE]"
+	},
+	"PageLine": {
+		"prefix": ["pln"],
+		"body": "\\noindent\\makebox[\\linewidth]{\\rule{\\paperwidth}{1pt}}"
+	},
+	"ParaLine": {
+		"prefix": ["lln"],
+		"body": "\\noindent\\rule{\\linewidth}{0.2pt}"
+	},
+	"Box": {
+		"prefix": ["box"],
+		"body": [
+			"{",
+			"\t\\centering\\fbox{",
+			"\t\t$1",
+			"\t}",
+			"\t\\par",
+			"}$0"
+		]
+	},
+	"TikzImage": {
+		"prefix": ["tikzpic"],
+		"body": [
+			"\\begin{figure}[${1:h}]",
+			"\t\\centering",
+			"\t\\begin{tikzpicture}[scale=${2:1}]",
+			"\t\t\\draw",
+			"\t\t$0",
+			"\t\\end{tikzpicture}",
+			"\t\\caption{$3}",
+			"\\end{figure}"
+		]
+	},
+	"Function Graph": {
+		"prefix": ["fgraph"],
+		"body": [
+			"{\\centering\\begin{tikzpicture}[scale=${1:1}]",
+			"\t\\begin{axis}[",
+			"\t\taxis equal image,",
+			"\t\taxis lines = center,",
+			"\t\txmin=$2, xmax=$3,",
+			"\t\tymin=$4, ymax=$5,",
+			"\t\txlabel={${6:x}},",
+			"\t\tylabel={${7:y}},",
+			"\t\tticklabel style={font=\\tiny, color=${8:blue}},",
+			"\t\txtick align=outside, ytick align=outside,",
+			"\t\tx label style={at={(1,0)}, below left, yshift=10pt},",
+			"\t\ty label style={at={(0,1)}, below left, xshift=10pt},",
+			"\t\txtick={$9}, xticklabels={$10},",
+			"\t\tytick={$11}, yticklabels={$12},",
+			"\t]",
+			"\t\t\\addplot [domain=$13:$14, samples=500, thick, smooth] {$15};",
+			"\t\t$0",
+			"\t\\end{axis}",
+			"\\end{tikzpicture}\\par\\}"
+		]
+	}
+}

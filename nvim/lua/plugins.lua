@@ -40,7 +40,7 @@ require('lazy').setup({
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		config = function()
-			require("config.nvim-cmp")
+			require("cmp.nvim-cmp")
 		end
 	},
 
@@ -59,4 +59,8 @@ require('lazy').setup({
 		branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+	}
 })
