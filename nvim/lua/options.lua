@@ -7,16 +7,21 @@ vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
 vim.cmd("syntax enable")
 
-if vim.fn.has("win32") then
-	vim.opt.shell = 'powershell'
-	vim.opt.shellcmdflag="-c"
-	vim.opt.shellxquote=''
-end
+-- if vim.fn.has("win32") then
+-- 	vim.opt.shell = 'powershell'
+-- 	vim.opt.shellcmdflag="-c"
+-- 	vim.opt.shellxquote=''
+-- end
+vim.opt.shell = 'zsh'
+
+vim.opt.completeopt = "menuone"
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
+
+vim.opt.termguicolors = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -35,8 +40,6 @@ vim.opt.showtabline = 1
 vim.opt.laststatus = 3
 
 vim.opt.autoread = true
-
-vim.opt.updatetime = 250
 
 vim.opt.list = true
 vim.opt.listchars = "trail:×,tab:· "

@@ -39,10 +39,10 @@ function CMAKEcreateProject(opts)
 	CMakeLists[4] = "set(SOURCES src/main." .. projectType .. ")"
 	CMakeLists[17] = "add_executable(" .. projectName .. " ${SOURCES})"
 
-	if(vim.fn.has("win32")) then
-		CMakeLists[10] = set_compiler[1]
-		CMakeLists[11] = set_compiler[2]
-	end
+	-- if(vim.fn.has("win32")) then
+	-- 	CMakeLists[10] = set_compiler[1]
+	-- 	CMakeLists[11] = set_compiler[2]
+	-- end
 
 	vim.cmd("e " .. projectDir .. "/" .. projectName .. "/" .. "CMakeLists.txt")
 	vim.api.nvim_buf_set_lines(0, 0, 0, 0, CMakeLists)

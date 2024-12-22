@@ -39,6 +39,7 @@ require('lazy').setup({
 			"hrsh7th/vim-vsnip",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
+		lazy = false,
 		config = function()
 			require("cmp.nvim-cmp")
 		end

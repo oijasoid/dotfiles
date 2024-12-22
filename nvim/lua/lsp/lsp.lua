@@ -73,8 +73,8 @@ vim.diagnostic.config({
 	-- } },
 	signs = true,
 	underline = true,
-	virtual_text = false,
-	update_in_insert = false,
+	virtual_text = true,
+	update_in_insert = true,
 	severity_sort = true,
 })
 
@@ -109,5 +109,8 @@ lspconfig.cmake.setup({
 	on_attach = on_attach,
 })
 lspconfig.bashls.setup({
+	on_attach = on_attach,
+})
+lspconfig.texlab.setup({
 	on_attach = on_attach,
 })

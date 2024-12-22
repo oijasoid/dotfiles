@@ -1,0 +1,117 @@
+// -*- mode: jsonc -*-
+{
+	"layer": "bottom",
+	"position": "top",
+	"height": "20px",
+
+	"modules-left": ["hyprland/workspaces", "hyprland/submap"],
+	"modules-center": ["custom/music", "clock"],
+	"modules-right": ["pulseaudio", "network", "backlight", "battery", "tray", "custom/lock", "custom/power"],
+
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"format-icons": {
+			"1": "一",
+			"2": "二",
+			"3": "三",
+			"4": "四",
+			"5": "五",
+			"6": "六",
+			"7": "匕",
+			"8": "八",
+			"9": "九",
+			"10": "十",
+		},
+	},
+
+	"custom/music": {
+		"format": "  {}",
+		"escape": true,
+		"interval": 5,
+		"tooltip": false,
+		"exec": "playerctl metadata --format='{{artist}} - {{title}}'",
+		"on-click": "playerctl play-pause",
+		"on-scroll-up": "playerctl next",
+		"on-scroll-down": "playerctl previous",
+		"max-length": 50
+	},
+	"clock": {
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"format": "󰥔 {:%H:%M}",
+		"calendar": {
+			"mode"          : "month",
+			"mode-mon-col"  : 3,
+			"weeks-pos"     : "right",
+			"on-scroll"     : 1,
+			"format": {
+				"months":     "<span color='#cdd6f4' font_desc='HurmitNerdFont 14'><b>{}</b></span>",
+				"days":       "<span color='#cdd6f4' font_desc='HurmitNerdFont 14'>{}</span>",
+				"weeks":      "<span color='#a6e3a1' font_desc='HurmitNerdFont 14'>W{}</span>",
+				"weekdays":   "<span color='#89b4fa' font_desc='HurmitNerdFont 14'>{}</span>",
+				"today":      "<span color='#f38ba8' font_desc='HurmitNerdFont 14'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions":  {
+			"on-click-right": "mode",
+			"on-scroll-up": "tz_up",
+			"on-scroll-down": "tz_down",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+	},
+
+	"pulseaudio": {
+		"scroll-step": 2,
+		"format": "{icon} {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"default": ["", "", " "]
+		},
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	},
+	"network": {
+		"format-ethernet": "󰈀",
+		"format-wifi": "{icon}",
+		"format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+		"format-linked": "",
+		"format-disconnected": "",
+		"tooltip-format-wifi": "{essid} {frequency}GHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+		"tooltip-format-ethernet": "{ifname}\n {bandwidthUpBits}  {bandwidthDownBits}"
+	},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{icon}",
+		"tooltip-format": "{percent}%",
+		"format-icons": ["", "", "", "", "", "", "", "", ""],
+		"on-scroll-up": "brightnessctl s 5%+",
+		"on-scroll-down": "brightnessctl s 5%-"
+	},
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 20
+		},
+		"format": "{icon}",
+		"format-charging": "󰂄",
+		"format-discharging-warning": "󱃍",
+		"format-discharging-critical": "󱃍",
+		"format-plugged": "󱟢",
+		"format-alt": "{icon}",
+		"format-icons": ["󰂎", "󰁺",  "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+		"tooltip-format": "{capacity}%\n{timeTo}"
+	},
+	"tray": {
+		"icon-size": 16,
+		"spacing": 10
+	},
+	"custom/lock": {
+		"tooltip": false,
+		"on-click": "loginctl lock-session",
+		"format": "",
+	},
+	"custom/power": {
+		"tooltip": false,
+		"on-click": "~/.config/rofi/bin/powermenu",
+		"format": "⏻"
+	}
+}

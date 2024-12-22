@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+rofi_command="rofi -theme $HOME/.config/rofi/config/bluetooth.rasi"
+
+options="[turn off]"
+options="${options}\n$(bluetoothctl devices)"
+
+chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 0)"
+
+case $chosen in
+	"[turn off]")
+		bluetoothctl power off
+		;;
+	*)
+		bluetoothctl power on
+		mac="$(echo -e "$chosen" | awk '{print $2}' )"
+		bluetoothctl connect $mac
+		;;
+esac

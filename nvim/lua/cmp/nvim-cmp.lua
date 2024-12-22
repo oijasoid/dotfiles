@@ -11,9 +11,9 @@ end
 local cmp = require('cmp')
 
 local vsnip_dir = '~/.config/nvim/lua/vsnip'
-if (vim.fn.has('win32')) then
-	vsnip_dir = '~/AppData/Local/nvim/lua/vsnip'
-end
+--if (vim.fn.has('win32')) then
+--	vsnip_dir = '~/AppData/Local/nvim/lua/vsnip'
+--end
 
 vim.g.vsnip_snippet_dir = vsnip_dir
 
@@ -147,9 +147,18 @@ local map = {
 
 cmp.setup {
 
+	enabled = true,
+
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered()
+	},
+
+	performance = {
+		trigger_debounce_time = 500,
+		throttle = 550,
+		fetching_timeout = 80,
+		max_view_entries = 7;
 	},
 
 	view = {
@@ -183,12 +192,12 @@ cmp.setup {
 		},
 
 		sources = cmp.config.sources({
-			{ name = 'nvim_lsp' },
+			{ name = 'nvim_lsp' , max_item_count = 200 },
 			{ name = 'nvim_lua' },
 			{ name = 'nvim_lsp_signature_help' },
 			{ name = 'vsnip' },
-			{ name = 'buffer' },
 			{ name = 'path' },
+			{ name = 'cmdline' },
 		}),
 
 		experimental = {
@@ -210,4 +219,8 @@ cmp.setup {
 			{ name = 'cmdline' },
 		}),
 		matching = { disallow_symbol_nonprefix_matching = false }
+	})
+
+	cmp.setup.filetype("txt", {
+		enabled = false,
 	})
