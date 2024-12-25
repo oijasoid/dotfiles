@@ -1,13 +1,13 @@
 require('plugins')
 
+require('telescope.telescope')
 require('lsp.lsp')
+require('cmp.nvim-cmp')
 require('treesitter.treesitter')
 require('lualine.lualine')
-require('telescope.telescope')
 
 require('colorscheme')
 require('options')
 require('keymaps')
 
-require('cmake.cmake')
 require('vimtex.vimtex')

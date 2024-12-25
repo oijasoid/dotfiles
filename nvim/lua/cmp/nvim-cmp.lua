@@ -10,19 +10,7 @@ end
 
 local cmp = require('cmp')
 
-local vsnip_dir = '~/.config/nvim/lua/vsnip'
---if (vim.fn.has('win32')) then
---	vsnip_dir = '~/AppData/Local/nvim/lua/vsnip'
---end
-
-vim.g.vsnip_snippet_dir = vsnip_dir
-
---automatically insert () when completing a function
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on(
-'confirm_done',
-cmp_autopairs.on_confirm_done()
-)
+vim.g.vsnip_snippet_dir = '~/.config/nvim/lua/vsnip'
 
 local kind_icons = {
 	Text = ' ',
@@ -65,62 +53,27 @@ local map = {
 		c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
 	}),
 
-	['<C-j>'] = cmp.mapping({
-		i = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-			elseif has_words_before() then
-				cmp.complete()
-				if #cmp.get_entries() == 1 then
-					cmp.confirm({ select = true })
-				end
-			else
-				fallback()
-			end
-		end,
-		s = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-			elseif has_words_before() then
-				cmp.complete()
-				if #cmp.get_entries() == 1 then
-					cmp.confirm({ select = true })
-				end
-			else
-				fallback()
-			end
-		end,
-		c = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-			elseif has_words_before() then
-				cmp.complete()
-				if #cmp.get_entries() == 1 then
-					cmp.confirm({ select = true })
-				end
-			else
-				fallback()
-			end
-		end,
-	}),
+	['<C-n>'] = cmp.mapping(
+	function(fallback)
+		if cmp.visible() then
+			cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+		else
+			fallback()
+		end
+	end,
+	{ 'i', 's', 'c' }
+	),
 
-	['<C-k>'] = cmp.mapping({
-		i = function ()
-			if cmp.visible() then
-				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-			end
-		end,
-		s = function ()
-			if cmp.visible() then
-				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-			end
-		end,
-		c = function ()
-			if cmp.visible() then
-				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-			end
-		end,
-	}),
+	['<C-p>'] = cmp.mapping(
+	function (fallback)
+		if cmp.visible() then
+			cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+		else
+			fallback()
+		end
+	end,
+	{ 'i', 's', 'c' }
+	),
 
 	['<Tab>'] = cmp.mapping(
 	function (fallback)
@@ -135,10 +88,12 @@ local map = {
 	),
 
 	['<S-Tab>'] = cmp.mapping(
-	function ()
+	function (fallback)
 		if cmp.visible() then
 		elseif vim.fn['vsnip#available'](-1) == 1 then
 			feedkey('<Plug>(vsnip-jump-prev)', '')
+		else
+			fallback()
 		end
 	end,
 	{'i', 's'}
@@ -146,7 +101,6 @@ local map = {
 }
 
 cmp.setup {
-
 	enabled = true,
 
 	window = {
@@ -178,49 +132,40 @@ cmp.setup {
 		fields = {'abbr', 'kind'},
 		format = function(entry, vim_item)
 			vim_item.kind = string.format(' %s %s', kind_icons[vim_item.kind], vim_item.kind )
-			-- vim_item.menu = ({
-				-- 	buffer = "[Buff]",
-				-- 	nvim_lsp = "[LSP]",
-				-- 	nvim_lua = "[API]",
-				-- 	path = "[Path]",
-				-- 	vsnip = "[Snip]"
-				-- })[entry.source.name]
+			return vim_item
+		end
+	},
 
-				-- vim_item.kind = kind_icons[vim_item.kind]
-				return vim_item
-			end
-		},
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' , max_item_count = 200 },
+		{ name = 'nvim_lua' },
+		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'vsnip' },
+		{ name = 'path' },
+		{ name = 'cmdline' },
+	}),
 
-		sources = cmp.config.sources({
-			{ name = 'nvim_lsp' , max_item_count = 200 },
-			{ name = 'nvim_lua' },
-			{ name = 'nvim_lsp_signature_help' },
-			{ name = 'vsnip' },
-			{ name = 'path' },
-			{ name = 'cmdline' },
-		}),
-
-		experimental = {
-			ghost_text = true
-		}
+	experimental = {
+		ghost_text = true
 	}
+}
 
-	cmp.setup.cmdline({ '/', '?' }, {
-		mapping = map,
-		sources = {
-			{ name = 'buffer' }
-		}
-	})
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = map,
+	sources = {
+		{ name = 'buffer' }
+	}
+})
 
-	cmp.setup.cmdline(':', {
-		mapping = map,
-		sources = cmp.config.sources({
-			{ name = 'path' },
-			{ name = 'cmdline' },
-		}),
-		matching = { disallow_symbol_nonprefix_matching = false }
-	})
+cmp.setup.cmdline(':', {
+	mapping = map,
+	sources = cmp.config.sources({
+		{ name = 'path' },
+		{ name = 'cmdline' },
+	}),
+	matching = { disallow_symbol_nonprefix_matching = false }
+})
 
-	cmp.setup.filetype("txt", {
-		enabled = false,
-	})
+cmp.setup.filetype("txt", {
+	enabled = false,
+})

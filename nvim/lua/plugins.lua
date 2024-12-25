@@ -21,12 +21,6 @@ require('lazy').setup({
 	},
 
 	{
-		'windwp/nvim-autopairs',
-		event = "InsertEnter",
-		config = true
-	},
-
-	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"onsails/lspkind.nvim",
@@ -40,9 +34,6 @@ require('lazy').setup({
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		lazy = false,
-		config = function()
-			require("cmp.nvim-cmp")
-		end
 	},
 
 	{
