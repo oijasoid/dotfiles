@@ -24,24 +24,24 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (300, 750)
+    width = (300, 400)
 
     # dynamic height from 0 to 300
     # height = (0, 300)
     # constant width of 300
-    height = (0, 500)
+    height = (0, 150)
 
     # Position the notification in the top right corner
-    origin = top-center
+    origin = top-right
 
     # Offset from the origin
-    offset = (0, 20)
+    offset = (10, 10)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 5
+    notification_limit = 10
 
     ### Progress bar ###
 
@@ -51,10 +51,10 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 10
+    progress_bar_height = 15
 
     # Set the frame width of the progress bar
-    progress_bar_frame_width = 1
+    progress_bar_frame_width = 2
 
     # Set the minimum width for the progress bar
     progress_bar_min_width = 150
@@ -98,7 +98,7 @@
     horizontal_padding = 8
 
     # Padding between text and icon.
-    text_icon_padding = 0
+    text_icon_padding = 10
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -111,7 +111,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 0
+    gap_size = 10
 
     # Define a color for the separator.
     # possible values are:
@@ -216,7 +216,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita
+    icon_theme = Papirus-Dark
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -232,7 +232,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
 
     ### History ###
 
@@ -246,7 +246,7 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -p dunst:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -272,7 +272,7 @@
     #
     # Comma-separated list of the corners. The accepted corner values are bottom-right,
     # bottom-left, top-right, top-left, top, bottom, left, right or all.
-    corners = all
+    corners = left, bottom-right
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -337,26 +337,29 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#1e1e2e"
     foreground = "#cdd6f4"
+	highlight = "#89b4fa"
     timeout = 2
     # Icon for notifications with low urgency, uncomment to enable
-    default_icon = /usr/share/icons/Papirus-Dark/symbolic/status/dialog-information-symbolic.svg
+    default_icon = dialog-information-symbolic
 
 [urgency_normal]
     background = "#1e1e2e"
     foreground = "#cdd6f4"
+	highlight = "#89b4fa"
     timeout = 3
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
-    default_icon = /usr/share/icons/Papirus-Dark/symbolic/status/dialog-information-symbolic.svg
+    default_icon = dialog-information-symbolic
 
 [urgency_critical]
     background = "#1e1e2e"
     foreground = "#cdd6f4"
     frame_color = "#eba0ac"
+    highlight = "#eba0ac"
     timeout = 0
     override_pause_level = 60
     # Icon for notifications with critical urgency, uncomment to enable
-    default_icon = /usr/share/icons/Papirus-Dark/symbolic/status/dialog-warning-symbolic.svg
+    default_icon = dialog-warning-symbolic
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

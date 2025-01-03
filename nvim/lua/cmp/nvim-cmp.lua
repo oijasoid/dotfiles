@@ -1,9 +1,3 @@
-local has_words_before = function()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
@@ -40,73 +34,49 @@ local kind_icons = {
 	TypeParameter = '󰅲 ',
 }
 
+-- Add () for function completion
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
 local map = {
-	['<CR>'] = cmp.mapping({
-		i = function(fallback)
-			if cmp.visible() and cmp.get_active_entry() then
-				cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+
+	['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+
+	['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+
+	['<C-Space>'] = cmp.mapping.complete {},
+
+	['<C-y>'] = cmp.mapping.confirm { select = false },
+
+	['<C-l>'] = cmp.mapping(
+		function (fallback)
+			if cmp.visible() then
+			elseif vim.fn['vsnip#available'](1) == 1 then
+				feedkey('<Plug>(vsnip-expand-or-jump)', '')
 			else
 				fallback()
 			end
 		end,
-		s = cmp.mapping.confirm({ select = true }),
-		c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-	}),
-
-	['<C-n>'] = cmp.mapping(
-	function(fallback)
-		if cmp.visible() then
-			cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-		else
-			fallback()
-		end
-	end,
-	{ 'i', 's', 'c' }
+		{'i', 's'}
 	),
 
-	['<C-p>'] = cmp.mapping(
-	function (fallback)
-		if cmp.visible() then
-			cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-		else
-			fallback()
-		end
-	end,
-	{ 'i', 's', 'c' }
-	),
-
-	['<Tab>'] = cmp.mapping(
-	function (fallback)
-		if cmp.visible() then
-		elseif vim.fn['vsnip#available'](1) == 1 then
-			feedkey('<Plug>(vsnip-expand-or-jump)', '')
-		else
-			fallback()
-		end
-	end,
-	{'i', 's'}
-	),
-
-	['<S-Tab>'] = cmp.mapping(
-	function (fallback)
-		if cmp.visible() then
-		elseif vim.fn['vsnip#available'](-1) == 1 then
-			feedkey('<Plug>(vsnip-jump-prev)', '')
-		else
-			fallback()
-		end
-	end,
-	{'i', 's'}
+	['<C-h>'] = cmp.mapping(
+		function (fallback)
+			if cmp.visible() then
+			elseif vim.fn['vsnip#available'](-1) == 1 then
+				feedkey('<Plug>(vsnip-jump-prev)', '')
+			else
+				fallback()
+			end
+		end,
+		{'i', 's'}
 	),
 }
 
 cmp.setup {
 	enabled = true,
 
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered()
-	},
+	completion = { completeopt = 'menu,menuone,noinsert' },
 
 	performance = {
 		trigger_debounce_time = 500,
@@ -142,30 +112,24 @@ cmp.setup {
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'vsnip' },
 		{ name = 'path' },
-		{ name = 'cmdline' },
 	}),
 
 	experimental = {
-		ghost_text = true
+		ghost_text = true,
 	}
 }
 
-cmp.setup.cmdline({ '/', '?' }, {
-	mapping = map,
-	sources = {
-		{ name = 'buffer' }
-	}
-})
-
 cmp.setup.cmdline(':', {
-	mapping = map,
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
-		{ name = 'path' },
 		{ name = 'cmdline' },
-	}),
-	matching = { disallow_symbol_nonprefix_matching = false }
+		{ name = 'path' },
+	})
 })
 
-cmp.setup.filetype("txt", {
-	enabled = false,
+cmp.setup.cmdline({'/', '?'}, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = 'buffer' },
+	})
 })

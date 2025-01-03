@@ -11,6 +11,7 @@ case $chosen in
 		bluetoothctl power off
 		;;
 	*)
+		rfkill unblock bluetooth
 		bluetoothctl power on
 		mac="$(echo -e "$chosen" | awk '{print $2}' )"
 		bluetoothctl connect $mac

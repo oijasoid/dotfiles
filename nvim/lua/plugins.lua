@@ -4,31 +4,31 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
 		lazypath,
-	})
-end
+	}) end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	{
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig"
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "williamboman/mason.nvim", config = true },
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+		},
 	},
 
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
-			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
@@ -37,13 +37,26 @@ require('lazy').setup({
 	},
 
 	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate"
+		'folke/todo-comments.nvim',
+		lazy = false,
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		opts = { signs = false },
 	},
 
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
+
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true,
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate"
 	},
 
 	{

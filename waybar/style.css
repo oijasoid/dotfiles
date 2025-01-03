@@ -51,22 +51,22 @@ tooltip label {
 }
 
 #workspaces {
-  border-radius: 1rem;
-  margin-left: 1rem;
+  border-radius: 0rem;
+  margin-left: 5px;
   background-color: @base;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #workspaces button {
   background-color: transparent;
   color: @lavender;
-  border-radius: 1rem;
+  border-radius: 0rem;
   padding: 0.6rem 0.6rem;
 }
 
 #workspaces button.active {
   color: @sky;
-  border-radius: 1rem;
+  border-radius: 0rem;
 }
 
 #custom-music,
@@ -80,19 +80,19 @@ tooltip label {
 #custom-power {
   background-color: @base;
   padding: 0.6rem 1rem;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #clock {
   color: @blue;
-  border-radius: 1rem;
+  border-radius: 0rem;
   margin-right: 1rem;
   margin-left: 1rem;
 }
 
 #battery {
   color: @green;
-  border-radius: 0 1rem 1rem 0;
+  border-radius: 0;
 }
 
 #battery.charging {
@@ -117,7 +117,7 @@ tooltip label {
 
 #pulseaudio {
   color: @maroon;
-  border-radius: 1rem 0px 0px 1rem;
+  border-radius: 0px;
   margin-left: 1rem;
 }
 
@@ -131,22 +131,22 @@ tooltip label {
 
 #custom-music {
   color: @mauve;
-  border-radius: 1rem;
+  border-radius: 0rem;
 }
 
 #custom-lock {
-    border-radius: 1rem 0px 0px 1rem;
+    border-radius: 0px;
     color: @lavender;
 	margin-left: 1rem;
 }
 
 #custom-power {
-    margin-right: 1rem;
-    border-radius: 0px 1rem 1rem 0px;
+    margin-right: 5px;
+    border-radius: 0px;
     color: @red;
 }
 
 #tray {
   margin-left: 1rem;
-  border-radius: 1rem;
+  border-radius: 0rem;
 }

@@ -5,6 +5,8 @@ local opts = {
 	silent = true
 }
 
+-- TODO: oijsdfoi
+
 vim.g.mapleader = ' '
 
 vim.keymap.set('n', '<leader>ee', vim.cmd.Ex, opts)
@@ -27,6 +29,9 @@ vim.keymap.set('n', 'N', "Nzzzv")
 vim.keymap.set('n', '<leader>y', "\"+y")
 vim.keymap.set('v', '<leader>y', "\"+y")
 vim.keymap.set('n', '<leader>Y', "\"+Y")
+
+-- Paste from system clipboard
+vim.keymap.set('n', '<leader>p', "\"+p")
 
 -- Delete to void register
 vim.keymap.set('n', '<leader>d', "\"_d")

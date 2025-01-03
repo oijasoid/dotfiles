@@ -1,41 +1,3 @@
-require('mason').setup({
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗"
-		}
-	}
-})
-
-require('mason-lspconfig').setup({
-	ensure_installed = { 'lua_ls', 'clangd', 'glsl_analyzer' },
-})
-
-local on_attach = function(client, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-
-	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-	vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
-	vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
-	vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-	vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
-	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-	vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-	vim.keymap.set('n', '<leader>ws', vim.lsp.buf.workspace_symbol, opts)
-	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-	vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts)
-end
-
---Show symbols for diagnostics instead of letters
--- local signs = { Error = "", Warn = "", Hint = "", Info = "" }
--- for type, icon in pairs(signs) do
--- 	local hl = "DiagnosticSign" .. type
--- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
--- end
-
 --Highlight line numbers instead of showing diagnostic symbols
 for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
 	vim.fn.sign_define("DiagnosticSign" .. diag, {
@@ -61,20 +23,77 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-local lspconfig = require('lspconfig')
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+	callback = function (event)
 
-lspconfig.clangd.setup({
-	on_attach = on_attach,
+		local map = function (keys, func, desc)
+			vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+		end
+
+		map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+		map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+		map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+		map('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+		map('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+		map('K', vim.lsp.buf.hover, 'Hover Documentation')
+		map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+		map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+		map('<leader>ws', vim.lsp.buf.workspace_symbol, '[W]orkspace [S]ymbols')
+		map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
+		map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp')
+		map('[d', vim.diagnostic.goto_prev, 'Go to previous [D]iagnostic message')
+		map(']d', vim.diagnostic.goto_next, 'Go to next [D]iagnostic message')
+		map('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
+	end
 })
-lspconfig.glsl_analyzer.setup({
-	on_attach = on_attach,
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+local servers = {
+	clangd = {},
+	glsl_analyzer = {},
+	bashls = {},
+	texlab = {},
+	lua_ls = {
+		settings = {
+			Lua = {
+				runtime = { version = 'LuaJIT' },
+				workspace = {
+					checkThirdParty = false,
+					-- library = {
+					-- 	"${3rd}/luv/library",
+					-- 	unpack(vim.api.nvim_get_runtime_file("", true))
+					-- }
+					-- if too slow
+					library = { vim.env.VIMRUNTIME }
+				}
+			}
+		},
+	}
+}
+
+require('mason').setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗"
+		}
+	}
 })
-lspconfig.lua_ls.setup({
-	on_attach = on_attach,
-})
-lspconfig.bashls.setup({
-	on_attach = on_attach,
-})
-lspconfig.texlab.setup({
-	on_attach = on_attach,
+
+local ensure_installed = vim.tbl_keys(servers or {})
+
+require('mason-lspconfig').setup({
+	ensure_installed = ensure_installed,
+	handlers = {
+		function(server_name)
+			local server = servers[server_name] or {}
+
+			server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+			require('lspconfig')[server_name].setup(server)
+		end,
+	}
 })

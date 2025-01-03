@@ -19,7 +19,7 @@ window {
     text-color:                     @FG;
     border:                  	    2px;
     border-color:                   @BGA;
-    border-radius:                  10px;
+    border-radius:                  0px;
     width:                          700px;
     x-offset:                       0;
     y-offset:                       0;
@@ -33,13 +33,13 @@ prompt {
     text-color: 		            @FG;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
-    border-radius:                  10px;
+    border-radius:                  0px;
 }
 
 textbox-prompt-colon {
     expand: 			            false;
     str: 			                "";
-    border-radius:                  100%;
+    border-radius:                  00;
     background-color:               @BG;
     text-color:                     @BG;
     padding:                        8px 12px 8px 12px;
@@ -73,7 +73,7 @@ element {
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    vertical;
-    border-radius:                  6px;
+    border-radius:                  0px;
     padding:                        10px;
     width:                          120px;
 }
@@ -101,7 +101,7 @@ element selected {
     background-color:               @BGA;
     text-color:                     @SEL;
     border:                  	    0px 0px 0px 0px;
-    border-radius:                  6px;
+    border-radius:                  0px;
     border-color:                   @BDR;
 }
 

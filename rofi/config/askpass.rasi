@@ -10,7 +10,7 @@ window {
     width:        	        310px;
     padding:    	        20px;
     border:		            2px;
-    border-radius:          10px;
+    border-radius:          0px;
     border-color:           @BDR;
     location:               0;
     x-offset:               0;

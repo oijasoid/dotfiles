@@ -19,7 +19,7 @@ vim.opt.termguicolors = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 vim.opt.showmode = false
 
 vim.opt.incsearch = true
@@ -42,4 +42,15 @@ vim.opt.list = true
 vim.opt.listchars = "trail:×,tab:· "
 vim.opt.fillchars = "eob: "
 
-vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, { command = 'checktime' })
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+	desc = 'Check for buffer changes outside of nvim.',
+	command = 'checktime'
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+	desc = 'Highlight when yanking text.',
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+	callback = function ()
+		vim.highlight.on_yank()
+	end,
+})
