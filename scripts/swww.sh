@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env sh
 
 if ! pgrep -l swww-daemon ; then
 	swww-daemon &

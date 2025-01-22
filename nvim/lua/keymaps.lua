@@ -5,8 +5,6 @@ local opts = {
 	silent = true
 }
 
--- TODO: oijsdfoi
-
 vim.g.mapleader = ' '
 
 vim.keymap.set('n', '<leader>ee', vim.cmd.Ex, opts)

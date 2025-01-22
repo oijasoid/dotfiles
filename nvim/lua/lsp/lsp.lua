@@ -56,6 +56,7 @@ local servers = {
 	glsl_analyzer = {},
 	bashls = {},
 	texlab = {},
+	pylsp = {},
 	lua_ls = {
 		settings = {
 			Lua = {

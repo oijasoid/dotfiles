@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env sh
 
 case $1 in
 	"mic")
@@ -41,7 +41,7 @@ case $2 in
 			echo "Invalid Volume!"
 			return 1
 		fi
-		wpctl set-volume $device $2
+		wpctl set-volume $device $2 -l 1.0
 
 		val=$(wpctl get-volume $device | awk '{print $2}')
 		percent=$(printf "%d" $((val * 100)))
