@@ -6,7 +6,7 @@
 
 	"modules-left": ["hyprland/workspaces", "hyprland/submap"],
 	"modules-center": ["custom/music", "clock"],
-	"modules-right": ["pulseaudio", "network", "backlight", "battery", "tray", "custom/lock", "custom/power"],
+	"modules-right": ["pulseaudio", "network", "backlight", "battery", "custom/dnd", "tray", "custom/lock", "custom/power"],
 
 	"hyprland/workspaces": {
 		"format": "{icon}",
@@ -24,6 +24,12 @@
 		},
 	},
 
+	"custom/dnd": {
+		"on-click": "~/.config/scripts/dnd.sh",
+		"exec": "~/.config/waybar/scripts/dnd.sh",
+		"restart-interval": 1,
+		"tooltip": false,
+	},
 	"custom/music": {
 		"format": "  {}",
 		"escape": true,
@@ -111,7 +117,7 @@
 	},
 	"custom/power": {
 		"tooltip": false,
-		"on-click": "~/.config/rofi/bin/powermenu",
+		"on-click": "~/.config/rofi/bin/powermenu.sh",
 		"format": "⏻"
 	}
 }

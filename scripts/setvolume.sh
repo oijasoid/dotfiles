@@ -46,6 +46,13 @@ case $2 in
 		val=$(wpctl get-volume $device | awk '{print $2}')
 		percent=$(printf "%d" $((val * 100)))
 
+		muted=$(wpctl get-volume $device | awk '{print $3}')
+
+		if ! [[ -z $muted ]]; then
+			notify-send -u low -h int:value:$percent -h string:x-dunst-stack-tag:volume -i $micon "Volume" "$percent%"
+			return 0
+		fi
+
 		notify-send -u low -h int:value:$percent -h string:x-dunst-stack-tag:volume -i $icon "Volume" "$percent%"
 		;;
 esac

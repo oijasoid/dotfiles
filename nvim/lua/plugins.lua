@@ -60,21 +60,16 @@ require('lazy').setup({
 	},
 
 	{
-		"OXY2DEV/markview.nvim",
-		lazy = false,      -- Recommended
-		-- ft = "markdown" -- If you decide to lazy-load anyway
-
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
-		}
-	},
-
-	{
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
+
+	{
+		'ThePrimeagen/harpoon',
+		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
+
 	{
 		"lervag/vimtex",
 		lazy = false,

@@ -1,5 +1,3 @@
-local telescope = require('telescope.builtin')
-
 local opts = {
 	noremap = true,
 	silent = true
@@ -48,6 +46,19 @@ vim.keymap.set('n', '<leader>l', '<C-w>l', opts)
 
 vim.keymap.set('n', '<C-c>', ':nohls<Enter>', opts)
 
+local telescope = require('telescope.builtin')
+
 vim.keymap.set('n', '<leader>ff', telescope.find_files, opts)
 vim.keymap.set('n', '<leader>fb', telescope.buffers, opts)
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, opts)
+
+local harpoonMark = require('harpoon.mark')
+local harpoonUI = require('harpoon.ui')
+
+vim.keymap.set('n', '<leader>a', harpoonMark.add_file, opts);
+vim.keymap.set('n', '<C-v>', harpoonUI.toggle_quick_menu, opts);
+
+vim.keymap.set('n', '<C-h>', function() harpoonUI.nav_file(1) end, opts);
+vim.keymap.set('n', '<C-j>', function() harpoonUI.nav_file(2) end, opts);
+vim.keymap.set('n', '<C-k>', function() harpoonUI.nav_file(3) end, opts);
+vim.keymap.set('n', '<C-l>', function() harpoonUI.nav_file(4) end, opts);

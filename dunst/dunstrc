@@ -32,7 +32,7 @@
     height = (0, 150)
 
     # Position the notification in the top right corner
-    origin = top-right
+    origin = bottom-right
 
     # Offset from the origin
     offset = (10, 10)
@@ -83,7 +83,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-    transparency = 0
+    transparency = 80
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -272,7 +272,7 @@
     #
     # Comma-separated list of the corners. The accepted corner values are bottom-right,
     # bottom-left, top-right, top-left, top, bottom, left, right or all.
-    corners = left, bottom-right
+    corners = left, top-right
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -285,7 +285,7 @@
 
     # Uncomment this if you want to let notifications appear under fullscreen
     # applications (default: overlay)
-    # layer = top
+    layer = overlay
 
     # Set this to true to use X11 output on Wayland.
     force_xwayland = false
@@ -339,6 +339,7 @@
     foreground = "#cdd6f4"
 	highlight = "#89b4fa"
     timeout = 2
+	fullscreen = pushback
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = dialog-information-symbolic
 
@@ -347,6 +348,7 @@
     foreground = "#cdd6f4"
 	highlight = "#89b4fa"
     timeout = 3
+	fullscreen = pushback
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
     default_icon = dialog-information-symbolic
@@ -357,9 +359,56 @@
     frame_color = "#eba0ac"
     highlight = "#eba0ac"
     timeout = 0
+	fullscreen = show
     override_pause_level = 60
     # Icon for notifications with critical urgency, uncomment to enable
     default_icon = dialog-warning-symbolic
+
+[play-sound]
+	summary = "*"
+	script = "$HOME/.config/dunst/notify-sound.sh"
+
+[volume-rocker]
+	stack_tag = "volume"
+	background = "#1e1e2e"
+	frame_color = "#cdd6f4"
+	highlight = "#cdd6f4"
+	icon_position = top
+	history_ignore = true
+	timeout = 2
+	override_pause_level = 100
+	fullscreen = show
+	alignment = center
+	min_icon_size = 64
+	hide_text = true
+
+[brightness]
+	stack_tag = "brightness"
+	background = "#1e1e2e"
+	frame_color = "#cdd6f4"
+	highlight = "#cdd6f4"
+	icon_position = top
+	history_ignore = true
+	timeout = 2
+	override_pause_level = 100
+	fullscreen = show
+	alignment = center
+	min_icon_size = 64
+	hide_text = true
+
+[touchpad]
+	stack_tag = "touchpad"
+	background = "#1e1e2e"
+	frame_color = "#cdd6f4"
+	highlight = "#cdd6f4"
+	icon_position = top
+	history_ignore = true
+	timeout = 2
+	override_pause_level = 100
+	fullscreen = show
+	alignment = center
+	min_icon_size = 64
+	hide_text = true
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

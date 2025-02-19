@@ -29,9 +29,16 @@
 		"prefix": ["geom"],
 		"body": "\\usepackage[${1:a4paper}, ${2:margin=${3:1}in}$4]{geometry}$0"
 	},
+	"Graphicx": {
+		"prefix": ["gphx"],
+		"body": "\\usepackage{graphicx}$0"
+	},
 	"PgfPlots": {
 		"prefix": ["pgfp"],
-		"body": "\\usepackage{pgfplots}$0"
+		"body": [
+			"\\usepackage{pgfplots}",
+			"\\pgfplotsset{compat = ${1:1.3}}$0"
+		]
 	},
 	"Begin / End": {
 		"prefix": ["beg"],
@@ -136,12 +143,12 @@
 	"Box": {
 		"prefix": ["box"],
 		"body": [
-			"{",
-			"\t\\centering\\fbox{",
-			"\t\t$1",
-			"\t}",
+			"\\begin{centering}",
+			"\t\\fbox{\\parbox{${1:0.5}\\linewidth}{",
+			"\t\t$2",
+			"\t}}",
 			"\t\\par",
-			"}$0"
+			"\\end{centering}$0"
 		]
 	},
 	"TikzImage": {
@@ -154,6 +161,16 @@
 			"\t\t$0",
 			"\t\\end{tikzpicture}",
 			"\t\\caption{$3}",
+			"\\end{figure}"
+		]
+	},
+	"Image": {
+		"prefix": ["img"],
+		"body": [
+			"\\begin{figure}[${1:h}]",
+			"\t\\centering",
+			"\t\\includegraphics${2:[$3]}{$4}",
+			"\t${5:\\caption{$6}}",
 			"\\end{figure}"
 		]
 	},
@@ -170,9 +187,8 @@
 			"\t\t\txlabel={${6:x}},",
 			"\t\t\tylabel={${7:y}},",
 			"\t\t\tticklabel style={font=\\tiny, color=${8:blue}},",
-			"\t\t\txtick align=outside, ytick align=outside,",
-			"\t\t\tx label style={at={(1,0)}, below left, yshift=10pt},",
-			"\t\t\ty label style={at={(0,1)}, below left, xshift=10pt},",
+			"\t\t\tx label style={right},",
+			"\t\t\ty label style={above},",
 			"\t\t\txtick={$9}, xticklabels={$10},",
 			"\t\t\tytick={$11}, yticklabels={$12},",
 			"\t\t]",

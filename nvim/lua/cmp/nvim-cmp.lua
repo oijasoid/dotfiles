@@ -48,7 +48,7 @@ local map = {
 
 	['<C-y>'] = cmp.mapping.confirm { select = false },
 
-	['<C-l>'] = cmp.mapping(
+	['<C-o>'] = cmp.mapping(
 		function (fallback)
 			if cmp.visible() then
 			elseif vim.fn['vsnip#available'](1) == 1 then
@@ -60,7 +60,7 @@ local map = {
 		{'i', 's'}
 	),
 
-	['<C-h>'] = cmp.mapping(
+	['<C-i>'] = cmp.mapping(
 		function (fallback)
 			if cmp.visible() then
 			elseif vim.fn['vsnip#available'](-1) == 1 then

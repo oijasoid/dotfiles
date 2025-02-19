@@ -12,8 +12,7 @@ end
 
 vim.diagnostic.config({
 	-- signs = { text = { [vim.diagnostic.severity.ERROR] = '',
-	-- 	[vim.diagnostic.severity.WARN] = '',
-	-- 	[vim.diagnostic.severity.INFO] = '',
+	-- 	[vim.diagnostic.severity.WARN] = '', [vim.diagnostic.severity.INFO] = '',
 	-- 	[vim.diagnostic.severity.HINT] = '',
 	-- } },
 	signs = true,
@@ -41,7 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 		map('<leader>ws', vim.lsp.buf.workspace_symbol, '[W]orkspace [S]ymbols')
 		map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
-		map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp')
+		map('<C-s>', vim.lsp.buf.signature_help, '[S]ignature Help')
 		map('[d', vim.diagnostic.goto_prev, 'Go to previous [D]iagnostic message')
 		map(']d', vim.diagnostic.goto_next, 'Go to next [D]iagnostic message')
 		map('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
@@ -57,6 +56,7 @@ local servers = {
 	bashls = {},
 	texlab = {},
 	pylsp = {},
+	svlangserver = {},
 	lua_ls = {
 		settings = {
 			Lua = {

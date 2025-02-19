@@ -24,3 +24,6 @@ PS1=$' %F{12}\Uf061 '
 RPROMPT=$'%F{8}%~ $(vcs_info_wrapper)'
 
 source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export DIFFPROG="nvim -d $1"
+alias vim="nvim"
