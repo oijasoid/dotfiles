@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+echo "${1} ${2}"
+
 case $1 in
 	"mic")
 		device="@DEFAULT_AUDIO_SOURCE@"
@@ -33,18 +35,10 @@ case $2 in
 		notify-send -u low -h int:value:$percent -h string:x-dunst-stack-tag:volume -i $icon "Volume" "$percent%"
 		;;
 	*)
-		if [[ $2 =~ "[a-zA-Z\`~!@#$^&*()_={}:;\\[\\]\"\',<>\/?|\\]+" ]]; then
-			echo "Invalid Volume!"
-			return 1
-		fi
-		if ! [[ $2 =~ "[0-9]+\.?[0-9]*%?(\+|\-)?" ]]; then
-			echo "Invalid Volume!"
-			return 1
-		fi
 		wpctl set-volume $device $2 -l 1.0
 
 		val=$(wpctl get-volume $device | awk '{print $2}')
-		percent=$(printf "%d" $((val * 100)))
+		percent=$(bc -s <<< "$val * 100")
 
 		muted=$(wpctl get-volume $device | awk '{print $3}')
 

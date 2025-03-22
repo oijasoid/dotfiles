@@ -12,6 +12,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
+	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
