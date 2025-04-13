@@ -1,15 +1,3 @@
---Highlight line numbers instead of showing diagnostic symbols
-for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
-	vim.fn.sign_define("DiagnosticSign" .. diag, {
-		text = "",
-		texthl = "DiagnosticSign" .. diag,
-		linehl = "",
-		--Use same diagnostic colors as the floating diagnostic window
-		--Other options are DiagnosticSign and DiagnosticVirtualText
-		numhl = "DiagnosticFloating" .. diag,
-	})
-end
-
 vim.diagnostic.config({
 	-- signs = { text = { [vim.diagnostic.severity.ERROR] = '',
 	-- 	[vim.diagnostic.severity.WARN] = '', [vim.diagnostic.severity.INFO] = '',
@@ -24,9 +12,8 @@ vim.diagnostic.config({
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-	callback = function (event)
-
-		local map = function (keys, func, desc)
+	callback = function(event)
+		local map = function(keys, func, desc)
 			vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
 		end
 
@@ -41,8 +28,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('<leader>ws', vim.lsp.buf.workspace_symbol, '[W]orkspace [S]ymbols')
 		map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
 		map('<C-s>', vim.lsp.buf.signature_help, '[S]ignature Help')
-		map('[d', vim.diagnostic.goto_prev, 'Go to previous [D]iagnostic message')
-		map(']d', vim.diagnostic.goto_next, 'Go to next [D]iagnostic message')
+		map('[d', function () vim.diagnostic.jump({count=-1, float=true}) end, 'Go to previous [D]iagnostic message')
+		map(']d', function () vim.diagnostic.jump({count=1, float=true}) end, 'Go to next [D]iagnostic message')
 		map('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
 	end
 })
@@ -57,6 +44,17 @@ local servers = {
 	texlab = {},
 	pylsp = {},
 	svlangserver = {},
+	asm_lsp = {},
+	arduino_language_server = {
+		capabilities = {
+			textDocument = {
+				semanticTokens = vim.NIL
+			},
+			workspace = {
+				semanticTokens = vim.NIL
+			}
+		}
+	},
 	lua_ls = {
 		settings = {
 			Lua = {

@@ -27,3 +27,6 @@ source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export DIFFPROG="nvim -d $1"
 alias vim="nvim"
+alias gdb-pwndbg="gdb -x /usr/share/pwndbg/gdbinit.py"
+
+fpath=($HOME/.config/zsh/completions $fpath)

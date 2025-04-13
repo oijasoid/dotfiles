@@ -35,7 +35,7 @@
     origin = bottom-right
 
     # Offset from the origin
-    offset = (10, 10)
+    offset = (5, 5)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -105,7 +105,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#89b4fa"
+    frame_color = "#d65d0e"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -335,18 +335,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-	highlight = "#89b4fa"
+    background = "#282828"
+    foreground = "#ebdbb2"
+	highlight = "#d65d0e"
     timeout = 2
 	fullscreen = pushback
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = dialog-information-symbolic
 
 [urgency_normal]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-	highlight = "#89b4fa"
+    background = "#282828"
+    foreground = "#ebdbb2"
+	highlight = "#d65d0e"
     timeout = 3
 	fullscreen = pushback
     override_pause_level = 30
@@ -354,10 +354,10 @@
     default_icon = dialog-information-symbolic
 
 [urgency_critical]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-    frame_color = "#eba0ac"
-    highlight = "#eba0ac"
+    background = "#282828"
+    foreground = "#ebdbb2"
+    frame_color = "#cc241d"
+    highlight = "#cc241d"
     timeout = 0
 	fullscreen = show
     override_pause_level = 60
@@ -370,9 +370,9 @@
 
 [volume-rocker]
 	stack_tag = "volume"
-	background = "#1e1e2e"
-	frame_color = "#cdd6f4"
-	highlight = "#cdd6f4"
+	background = "#282828"
+	frame_color = "#ebdbb2"
+	highlight = "#ebdbb2"
 	icon_position = top
 	history_ignore = true
 	timeout = 2
@@ -384,9 +384,9 @@
 
 [brightness]
 	stack_tag = "brightness"
-	background = "#1e1e2e"
-	frame_color = "#cdd6f4"
-	highlight = "#cdd6f4"
+	background = "#282828"
+	frame_color = "#ebdbb2"
+	highlight = "#ebdbb2"
 	icon_position = top
 	history_ignore = true
 	timeout = 2
@@ -398,9 +398,9 @@
 
 [touchpad]
 	stack_tag = "touchpad"
-	background = "#1e1e2e"
-	frame_color = "#cdd6f4"
-	highlight = "#cdd6f4"
+	background = "#282828"
+	frame_color = "#ebdbb2"
+	highlight = "#ebdbb2"
 	icon_position = top
 	history_ignore = true
 	timeout = 2

@@ -14,7 +14,7 @@ window {
     text-color:                     @FG;
     border:                         2px;
     border-color:                   @BDR;
-    border-radius:                  0px;
+    border-radius:                  10px;
     width:                          500px;
     anchor:                         center;
     x-offset:                       0;
@@ -25,7 +25,7 @@ textbox-prompt-colon {
     expand: 			            false;
     str: 			                "";
     border-radius:                  0;
-    background-color:               @SEL;
+    background-color:               @BG;
     text-color:                     @FG;
     padding:                        8px 12px 8px 12px;
     font:			                "HurmitNerdFontMono 12";
@@ -122,9 +122,9 @@ element alternate.active {
 
 element selected {
     background-color:               @BGA;
-    text-color:                     @SEL;
+    text-color:                     @BG;
     border:                  	    0px 0px 0px 0px;
-    border-radius:                  0px;
+    border-radius:                  10px;
     border-color:                   @BDR;
 }
 

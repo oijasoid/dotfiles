@@ -1,42 +1,14 @@
-@define-color text     #cdd6f4;
-@define-color subtext0 #a6adc8;
-@define-color subtext1 #bac2de;
-
-@define-color surface0 #313244;
-@define-color surface1 #45475a;
-@define-color surface2 #585b70;
-
-@define-color overlay0 #6c7086;
-@define-color overlay1 #7f849c;
-@define-color overlay2 #9399b2;
-
-@define-color base #1e1e2e;
-
-@define-color blue      #89b4fa;
-@define-color lavender  #b4befe;
-@define-color sapphire  #74c7ec;
-@define-color sky       #89dceb;
-@define-color teal      #94e2d5;
-@define-color green     #a6e3a1;
-@define-color yellow    #f9e2af;
-@define-color peach     #fab387;
-@define-color maroon    #eba0ac;
-@define-color red       #f38ba8;
-@define-color mauve     #cba6f7;
-@define-color pink      #f5c2e7;
-@define-color flamingo  #f2cdcd;
-@define-color rosewater #f5e0dc;
-
+@import "colors.css";
 
 * {
-  font-family: HurmitNerdFont;
-  font-size: 14px;
-  min-height: 0;
+	font-family: HurmitNerdFont;
+	font-size: 14px;
+	min-height: 0;
 }
 
 tooltip {
-	background: transparent;
-	border: 1px solid @blue;
+	background: @base;
+	border: 1px solid @blue1;
 }
 
 tooltip label {
@@ -45,28 +17,28 @@ tooltip label {
 }
 
 #waybar {
-  background-color: transparent;
-  color: @text;
-  margin: 0;
+	background-color: @transparent;
+	color: @text;
+	margin: 0;
 }
 
 #workspaces {
-  border-radius: 0rem;
-  margin-left: 5px;
-  background-color: @base;
-  margin-top: 5px;
+	border-radius: 10px;
+	margin-left: 5px;
+	background-color: @base;
+	margin-top: 5px;
 }
 
 #workspaces button {
-  background-color: transparent;
-  color: @lavender;
-  border-radius: 0rem;
-  padding: 0.6rem 0.6rem;
+	background-color: transparent;
+	color: @blue2;
+	border-radius: 0rem;
+	padding: 0.6rem 0.6rem;
 }
 
 #workspaces button.active {
-  color: @sky;
-  border-radius: 0rem;
+	color: @aqua2;
+	border-radius: 0rem;
 }
 
 #custom-music,
@@ -76,78 +48,76 @@ tooltip label {
 #battery,
 #network,
 #pulseaudio,
-#custom-lock,
 #custom-dnd,
 #custom-power {
-  background-color: @base;
-  padding: 0.6rem 1rem;
-  margin-top: 5px;
+	background-color: @base;
+	padding: 0.6rem 1rem;
+	margin-top: 5px;
 }
 
 #clock {
-  color: @blue;
-  border-radius: 0rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
+	color: @blue1;
+	border-radius: 10px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 #battery {
-  color: @green;
-  border-radius: 0;
+	color: @green1;
+	border-radius: 0;
 }
 
 #battery.charging {
-  color: @green;
+	color: @green1;
 }
 
 #battery.warning:not(.charging) {
-  color: @yellow;
+	color: @yellow1;
 }
 
 #battery.critical:not(.charging) {
-  color: @red;
+	color: @red1;
 }
 
 #backlight {
-  color: @yellow;
+	color: @yellow1;
 }
 
 #backlight {
-    border-radius: 0;
+	border-radius: 0;
+}
+
+#custom-dnd {
+	border-radius: 0px 10px 10px 0px;
 }
 
 #pulseaudio {
-  color: @maroon;
-  border-radius: 0px;
-  margin-left: 1rem;
+	color: @aqua1;
+	border-radius: 10px 0px 0px 10px;
+	margin-left: 5px;
 }
 
 #network {
-	color: @green;
+	color: @green2;
 }
 
 #network.disconnected {
-	color: @red;
+	color: @red1;
 }
 
 #custom-music {
-  color: @mauve;
-  border-radius: 0rem;
-}
-
-#custom-lock {
-    border-radius: 0px;
-    color: @lavender;
-	margin-left: 1rem;
+	color: @text;
+	border-radius: 10px;
 }
 
 #custom-power {
-    margin-right: 5px;
-    border-radius: 0px;
-    color: @red;
+	color: @red2;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 10px;
 }
 
 #tray {
-  margin-left: 1rem;
-  border-radius: 0rem;
+	margin-left: 5px;
+	border-radius: 10px;
 }

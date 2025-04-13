@@ -19,7 +19,7 @@ require('lualine').setup {
 		lualine_a = {'mode'},
 		lualine_b = {'branch', 'diff', 'diagnostics'},
 		lualine_c = {'filename'},
-		lualine_x = {'filesize'},
+		lualine_x = {'lsp_status'},
 		lualine_y = {'filetype'},
 		lualine_z = {'progress'}
 	},

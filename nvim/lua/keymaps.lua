@@ -39,6 +39,13 @@ vim.keymap.set('n', '<leader>bcc', ':%bd|e#|bd#<Enter>', opts)
 
 vim.keymap.set('n', '<leader>sv', vim.cmd.vsplit, opts)
 vim.keymap.set('n', '<leader>sh', vim.cmd.split, opts)
+
+vim.keymap.set('n', '<M-h>', '<c-w>5<')
+vim.keymap.set('n', '<M-l>', '<c-w>5>')
+vim.keymap.set('n', '<M-k>', '<C-w>-')
+vim.keymap.set('n', '<M-j>', '<C-w>+')
+
+
 vim.keymap.set('n', '<leader>h', '<C-w>h', opts)
 vim.keymap.set('n', '<leader>j', '<C-w>j', opts)
 vim.keymap.set('n', '<leader>k', '<C-w>k', opts)
@@ -49,6 +56,11 @@ vim.keymap.set('n', '<C-c>', ':nohls<Enter>', opts)
 local telescope = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', telescope.find_files, opts)
+vim.keymap.set('n', '<leader>en', function ()
+	telescope.find_files {
+	cwd = vim.fn.stdpath("config")
+}
+end, opts)
 vim.keymap.set('n', '<leader>fb', telescope.buffers, opts)
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, opts)
 

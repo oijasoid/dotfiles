@@ -8,6 +8,8 @@ vim.cmd("syntax enable")
 
 vim.opt.completeopt = ""
 
+vim.opt.inccommand = "split"
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -26,8 +28,11 @@ vim.opt.showmode = false
 
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
-vim.opt.ignorecase = false
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 vim.opt.numberwidth = 1
 vim.opt.foldcolumn = '1'
@@ -41,7 +46,7 @@ vim.opt.laststatus = 3
 vim.opt.autoread = true
 
 vim.opt.list = true
-vim.opt.listchars = "trail:×,tab:| ,lead:·"
+vim.opt.listchars = "trail:×,tab:┃ ,lead:·"
 vim.opt.fillchars = "eob: "
 
 vim.g.matchparen_timeout=30

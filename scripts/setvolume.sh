@@ -30,7 +30,7 @@ case $2 in
 		fi
 
 		val=$(wpctl get-volume $device | awk '{print $2}')
-		percent=$(printf "%d" $((val * 100)))
+		percent=$(bc -s <<< "$val * 100")
 
 		notify-send -u low -h int:value:$percent -h string:x-dunst-stack-tag:volume -i $icon "Volume" "$percent%"
 		;;
