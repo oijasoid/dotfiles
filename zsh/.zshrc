@@ -1,6 +1,8 @@
+fpath=($HOME/.config/zsh/completions $fpath)
+
 setopt prompt_subst
 autoload -Uz vcs_info
-autoload -U compinit
+autoload -Uz compinit
 
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=*' 'r:|=*'
@@ -28,5 +30,3 @@ source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export DIFFPROG="nvim -d $1"
 alias vim="nvim"
 alias gdb-pwndbg="gdb -x /usr/share/pwndbg/gdbinit.py"
-
-fpath=($HOME/.config/zsh/completions $fpath)

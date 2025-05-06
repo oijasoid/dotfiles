@@ -28,8 +28,8 @@
 
     # dynamic height from 0 to 300
     # height = (0, 300)
-    # constant width of 300
-    height = (0, 150)
+    # constant height of 300
+    height = (0, 100)
 
     # Position the notification in the top right corner
     origin = bottom-right
@@ -232,7 +232,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/symbolic/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
 
     ### History ###
 

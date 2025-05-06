@@ -1,13 +1,5 @@
-require('plugins')
+require('config.keymaps')
+require('config.options')
+require('config.autocmds')
 
-require('lsp.lsp')
-require('telescope.telescope')
-require('cmp.nvim-cmp')
-require('treesitter.treesitter')
-
-require('lualine.lualine')
-require('colorscheme')
-require('options')
-require('keymaps')
-
-require('vimtex.vimtex')
+require('config.lazy')

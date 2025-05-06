@@ -179,7 +179,7 @@
 			"\t\t\tymin=$4, ymax=$5,",
 			"\t\t\txlabel={${6:x}},",
 			"\t\t\tylabel={${7:y}},",
-			"\t\t\tticklabel style={font=\\tiny, color=${8:blue}},",
+			"\t\t\tticklabel style={font=\\tiny, color=${8:black}},",
 			"\t\t\tx label style={right},",
 			"\t\t\ty label style={above},",
 			"\t\t\txtick={$9}, xticklabels={$10},",
