@@ -1,0 +1,117 @@
+configuration {
+	modes:							"drun,run,clipboard,bluetooth";
+	location:						0;
+	show-icons:						false;
+	terminal:						"kitty";
+	display-drun:					"";
+	display-run:					"󰞷";
+
+	timeout {
+		action:						"kb-cancel";
+		delay:						0;
+	}
+}
+
+@import "options.rasi"
+
+* {
+	highlight: bold italic;
+	scrollbar: false;
+
+	background:						@BG;
+	foreground:						@FG;
+	background-color:				@BG;
+	border-color:					@BDR;
+	separatorcolor:					@BG;
+
+	normal-background:				@BG;
+	normal-foreground:				@FG;
+	alternate-normal-background:	@BG;
+	alternate-normal-foreground:	@FG;
+	selected-normal-background:		@BGA;
+	selected-normal-foreground:		@FG;
+
+	active-background:				@BGA;
+	active-foreground:				@FG;
+	alternate-active-background:	@BGA;
+	alternate-active-foreground:	@FG;
+	selected-active-background:		@BGA;
+	selected-active-foreground:		@FG;
+
+	urgent-background:				@UGT;
+	urgent-foreground:				@BG;
+	alternate-urgent-background:	@UGT;
+	alternate-urgent-foreground:	@BG;
+	selected-urgent-background:		@UGT;
+	selected-urgent-foreground:		@BG;
+
+	font:							@font-normal;
+}
+
+window {
+	transparency:					"real";
+	border:                         2px;
+	border-radius:                  10px;
+	width:                          500px;
+	anchor:                         center;
+}
+
+mainbox {
+	children:                       [ inputbar, listview ];
+	spacing:                        15px;
+	padding:                        15px;
+}
+
+inputbar {
+	children: 		                [ prompt, entry ];
+	expand:                         false;
+	border:                  	    0px;
+	border-radius:                  0px;
+	margin:                         0px;
+	padding:                        0px;
+	position:                       center;
+}
+
+prompt {
+	expand: 			            false;
+	border-radius:                  0;
+	padding:                        8px 12px 8px 12px;
+}
+
+entry {
+	placeholder:                    "Search...";
+	expand:                         true;
+	blink:                          true;
+	horizontal-align:               0;
+	border:                  	    0px;
+	border-radius:                  0px;
+	padding:                        8px;
+}
+
+listview {
+	lines:			                7;
+	spacing:                        4px;
+	cycle:                          true;
+	dynamic:                        true;
+	layout:                         vertical;
+}
+
+scrollbar {
+	handle-color:					@BDR;
+	handle-rounded-corners:			true;
+}
+
+element {
+	orientation:                    horizontal;
+	border-radius:                  10px;
+	padding:                        0px;
+}
+
+element-text {
+	background-color: 		        inherit;
+	text-color:       		        inherit;
+	expand:                         true;
+	horizontal-align:               0;
+	vertical-align:                 0.5;
+	margin:                         2px;
+}
