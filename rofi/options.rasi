@@ -1,10 +1,10 @@
 * {
-	BG:				#282828ff;
-	BGA:			#3c3836ff;
-	FG:				#ebdbb2ff;
-	BDR:			#d65d0eff;
-	UGT:			#fb4934ff;
+	BG:             #141415;
+	BGA:            #252530;
+	FG:             #cdcdcd;
+	BDR:            #aeaed1;
+	UGT:            #d8647e;
 
-	font-normal:	"HurmitNerdFont 12";
-	font-power:		"HurmitNerdFont 50";
+	font-normal:    "HurmitNerdFont 12";
+	font-power:     "HurmitNerdFont 60";
 }

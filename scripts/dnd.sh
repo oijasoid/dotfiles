@@ -12,7 +12,7 @@ export STATUS_FILE="$XDG_RUNTIME_DIR/dnd.status"
 enable_dnd() {
 	printf "true" >"$STATUS_FILE"
 
-	notify-send -u low "Do Not Disturb" -h string:x-dunst-stack-tag:dnd -i $enabled
+	notify-send -u low "Do Not Disturb" -h string:x-dunst-stack-tag:dnd -c system-control -i $enabled
 
 	sleep 3
 
@@ -22,7 +22,7 @@ enable_dnd() {
 disable_dnd() {
 	printf "false" >"$STATUS_FILE"
 
-	notify-send -u low "Notifications Enabled" -h string:x-dunst-stack-tag:dnd -i $disabled
+	notify-send -u low "Notifications Enabled" -h string:x-dunst-stack-tag:dnd -c system-control -i $disabled
 
 	dunstctl set-pause-level 0
 }

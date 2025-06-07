@@ -11,4 +11,5 @@ echo "$val $max $percent"
 
 notify-send -u low -h int:value:$percent\
 		-h string:x-dunst-stack-tag:brightness\
-		-i display-brightness-medium-symbolic "Brightness" "$percent%"
+		-c system-control\
+		-i display-brightness-medium-symbolic ""

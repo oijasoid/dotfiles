@@ -14,7 +14,7 @@ export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 enable_touchpad() {
 	printf "true" >"$STATUS_FILE"
 
-	notify-send -u low "Touchpad Enabled" -h string:x-dunst-stack-tag:touchpad -i $enabled
+	notify-send -u low "Touchpad Enabled" -h string:x-dunst-stack-tag:touchpad -c system-control -i $enabled
 
 	hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" true
 }
@@ -22,7 +22,7 @@ enable_touchpad() {
 disable_touchpad() {
 	printf "false" >"$STATUS_FILE"
 
-	notify-send -u low "Touchpad Disabled" -h string:x-dunst-stack-tag:touchpad -i $disabled
+	notify-send -u low "Touchpad Disabled" -h string:x-dunst-stack-tag:touchpad -c system-control -i $disabled
 
 	hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" false
 }

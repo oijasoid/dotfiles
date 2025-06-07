@@ -1,7 +1,6 @@
-@import "colors.css";
+@import "theme.css";
 
 * {
-	font-family: HurmitNerdFont;
 	font-size: 14px;
 	min-height: 0;
 }

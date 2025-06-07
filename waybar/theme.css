@@ -1,0 +1,22 @@
+@define-color text        #cdcdcd;
+
+@define-color base        #141415;
+
+@define-color black1      #252530;
+@define-color black2      #333738;
+@define-color red1        #c48282;
+@define-color red2        #d8647e;
+@define-color green1      #66874e;
+@define-color green2      #7fa563;
+@define-color yellow1     #e0a363;
+@define-color yellow2     #f3be7c;
+@define-color blue1       #90a0b5;
+@define-color blue2       #9bb4bc;
+@define-color purple1     #aeaed1;
+@define-color purple2     #bb9dbd;
+@define-color aqua1       #6e94b2;
+@define-color aqua2       #b4d4cf;
+@define-color white1      #878787;
+@define-color white2      #cdcdcd;
+
+* { font-family: HurmitNerdFont; }

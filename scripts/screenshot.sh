@@ -5,7 +5,7 @@ if ! [[ -d $2 ]]; then
 	exit 1
 fi
 
-file="$2/$(date +Screenshot-%a-%m-%b-%H:%M:%S).png"
+file="$2/$(date +Screenshot-%a-%d-%b-%H:%M:%S).png"
 
 case $1 in
 	"full")
