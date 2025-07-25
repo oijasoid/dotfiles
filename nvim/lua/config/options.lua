@@ -52,3 +52,7 @@ vim.opt.fillchars = "eob: "
 
 vim.g.matchparen_timeout=30
 vim.g.matchparen_insert_timeout=10
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0

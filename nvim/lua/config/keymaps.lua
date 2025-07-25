@@ -6,6 +6,9 @@ local opts = {
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- Exit terminal mode using <Esc>
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
 -- Move selected text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
