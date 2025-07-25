@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 if ! pgrep -l swww-daemon ; then
 	swww-daemon &

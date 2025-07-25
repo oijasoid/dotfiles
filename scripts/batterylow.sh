@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 while true; do
 	bat_lvl=$(cat /sys/class/power_supply/BAT1/capacity)

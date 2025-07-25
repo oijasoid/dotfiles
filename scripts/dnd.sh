@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 disabled="notification-symbolic"
 enabled="notification-disabled-new-symbolic"

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 HYPRLAND_DEVICE="$1"
 

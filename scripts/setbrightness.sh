@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 brightnessctl s $1 $2 $3
 
