@@ -12,6 +12,7 @@ fi
 if [ x"$@" = x"[wipe]" ]
 then
 	cliphist wipe
+	wl-copy --clear
 	exit 0
 else
 	printf $1 | cliphist decode | wl-copy

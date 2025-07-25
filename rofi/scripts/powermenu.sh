@@ -21,7 +21,7 @@ else
 			loginctl lock-session
 			;;
 		$suspend)
-			amixer set Master mute
+			coproc ( amixer set Master mute > /dev/null 2>&1 )
 			loginctl lock-session
 			systemctl suspend
 			;;

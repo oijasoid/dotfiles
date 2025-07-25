@@ -50,7 +50,7 @@ configuration {
 window {
 	transparency:                   "real";
 	border:                  	    2px;
-	border-radius:                  10px;
+	border-radius:                  0px;
 	width:                          800px;
 	x-offset:                       0;
 	y-offset:                       0;
@@ -73,7 +73,7 @@ listview {
 
 element {
 	orientation:                    vertical;
-	border-radius:                  10px;
+	border-radius:                  0px;
 	width:                          144px;
 	height:                         144px;
 }
