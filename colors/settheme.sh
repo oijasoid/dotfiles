@@ -42,6 +42,7 @@ sddm_colors=/usr/share/sddm/themes/custom/theme.conf
 dunt_colors=~/.config/dunst/dunstrc.d/options.conf
 qt5ct_colors=~/.config/qt5ct/colors/Colors.conf
 qt6ct_colors=~/.config/qt6ct/colors/Colors.conf
+qutebrowser_colors=~/.config/qutebrowser/colors.py
 
 reload=~/.config/scripts/reload.sh
 
@@ -72,7 +73,9 @@ echo -e "color15                 $color15\n" >> $kitty_colors
 echo -e "cursor                  $color7" >> $kitty_colors
 echo -e "cursor_text_color       $color8\n" >> $kitty_colors
 
-echo -e "url_color               $url_color" >> $kitty_colors
+echo -e "url_color               $url_color\n" >> $kitty_colors
+
+echo -e "font_family             $font_terminal" >> $kitty_colors
 
 # Hyprland
 echo -e "\$bg   =    rgb(${background//#})" > $hypr_colors
@@ -85,7 +88,7 @@ echo -e "\$red     =    rgb(${color9//#})\n" >> $hypr_colors
 echo -e "\$activeBorder    =    rgb(${highlight//#})" >> $hypr_colors
 echo -e "\$inactiveBorder  =    rgb(${background//#})\n" >> $hypr_colors
 
-echo -e "\$font = $font" >> $hypr_colors
+echo -e "\$font = $font_menu" >> $hypr_colors
 
 # Rofi
 echo -e "* {" > $rofi_colors
@@ -95,8 +98,8 @@ echo -e "\tFG:             $foreground;" >> $rofi_colors
 echo -e "\tBDR:            $highlight;" >> $rofi_colors
 echo -e "\tUGT:            $color9;\n" >> $rofi_colors
 
-echo -e "\tfont-normal:    \"$font 12\";" >> $rofi_colors
-echo -e "\tfont-power:     \"$font 60\";" >> $rofi_colors
+echo -e "\tfont-normal:    \"$font_menu 12\";" >> $rofi_colors
+echo -e "\tfont-power:     \"$font_menu 60\";" >> $rofi_colors
 echo -e "}" >> $rofi_colors
 
 # Waybar
@@ -120,7 +123,7 @@ echo -e "@define-color aqua2       $color14;" >> $waybar_colors
 echo -e "@define-color white1      $color7;" >> $waybar_colors
 echo -e "@define-color white2      $color15;\n" >> $waybar_colors
 
-echo -e "* { font-family: $font; }" >> $waybar_colors
+echo -e "* { font-family: $font_menu; }" >> $waybar_colors
 
 # Zathura
 hl_red=$(echo $((16#${highlight:1:2})))
@@ -173,7 +176,7 @@ echo -e "set recolor                       true" >> $zathura_colors
 
 # SDDM
 echo -e "[General]" > $sddm_colors
-echo -e "Font=\"$font\"" >> $sddm_colors
+echo -e "Font=\"$font_menu\"" >> $sddm_colors
 echo -e "FontSize=16" >> $sddm_colors
 echo -e "CustomBackgrounds=\"true\"" >> $sddm_colors
 echo -e "LoginBackground=\"true\"" >> $sddm_colors
@@ -192,7 +195,7 @@ echo -e "foreground = \"$foreground\"" >> $dunt_colors
 echo -e "highlight = \"$highlight\"" >> $dunt_colors
 echo -e "frame_color = \"$highlight\"\n" >> $dunt_colors
 
-echo -e "font = $font 12" >> $dunt_colors
+echo -e "font = $font_menu 12" >> $dunt_colors
 echo -e "icon_theme = $icon_theme\n" >> $dunt_colors
 
 echo -e "[urgency_critical]" >> $dunt_colors
@@ -224,5 +227,28 @@ echo -e "[ColorScheme]" > $qt6ct_colors
 echo -e "active_colors=$qt_colors" >> $qt6ct_colors
 echo -e "inactive_colors=$qt_colors" >> $qt6ct_colors
 echo -e "disabled_colors=$qt_colors" >> $qt6ct_colors
+
+# Qutebrowser
+echo -e "colors = {" > $qutebrowser_colors
+echo -e "    'bg':    '$background'," >> $qutebrowser_colors
+echo -e "    'fg':    '$foreground'," >> $qutebrowser_colors
+echo -e "    'hl':    '$highlight',\n" >> $qutebrowser_colors
+echo -e "    'clr0':  '$color0'," >> $qutebrowser_colors
+echo -e "    'clr1':  '$color1'," >> $qutebrowser_colors
+echo -e "    'clr2':  '$color2'," >> $qutebrowser_colors
+echo -e "    'clr3':  '$color3'," >> $qutebrowser_colors
+echo -e "    'clr4':  '$color4'," >> $qutebrowser_colors
+echo -e "    'clr5':  '$color5'," >> $qutebrowser_colors
+echo -e "    'clr6':  '$color6'," >> $qutebrowser_colors
+echo -e "    'clr7':  '$color7'," >> $qutebrowser_colors
+echo -e "    'clr8':  '$color8'," >> $qutebrowser_colors
+echo -e "    'clr9':  '$color9'," >> $qutebrowser_colors
+echo -e "    'clr10': '$color10'," >> $qutebrowser_colors
+echo -e "    'clr11': '$color11'," >> $qutebrowser_colors
+echo -e "    'clr12': '$color12'," >> $qutebrowser_colors
+echo -e "    'clr13': '$color13'," >> $qutebrowser_colors
+echo -e "    'clr14': '$color14'," >> $qutebrowser_colors
+echo -e "    'clr15': '$color15'" >> $qutebrowser_colors
+echo -e "}" >> $qutebrowser_colors
 
 exec $reload

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-font="HurmitNerdFont"
+font_terminal="JetBrainsMono NF"
+font_menu="HurmitNerdFont"
 icon_theme="Papirus-Dark"
 
 selection_foreground="#ebdbb2"
