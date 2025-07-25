@@ -1,118 +1,285 @@
 // -*- mode: jsonc -*-
 {
-	"layer": "bottom",
+	"name": "status",
+	"id": "status",
+	"layer": "top",
 	"position": "top",
+	"reload_style_on_change": true,
 	"height": "20px",
+	"margin": "5 5 0 5",
+	"mode": "dock",
+	"fixed-center": true,
 
-	"modules-left": ["hyprland/workspaces", "hyprland/submap"],
-	"modules-center": ["custom/music", "clock"],
-	"modules-right": ["pulseaudio", "network", "backlight", "battery", "custom/dnd", "custom/power"],
-
-	"hyprland/workspaces": {
-		"format": "{icon}",
-		"format-icons": {
-			"1": "一",
-			"2": "二",
-			"3": "三",
-			"4": "四",
-			"5": "五",
-			"6": "六",
-			"7": "匕",
-			"8": "八",
-			"9": "九",
-			"10": "十",
+	"modules-left": [
+		"group/datetime",
+		"hyprland/workspaces",
+		"hyprland/submap"
+	],
+	"modules-center": [
+		"custom/music"
+	],
+	"modules-right": [
+		"custom/updates",
+		"group/abn",
+		"group/motherboard",
+		"group/systray",
+		"custom/powermenu"
+	],
+	"group/datetime": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true
 		},
-	},
-
-	"custom/dnd": {
-		"on-click": "~/.config/scripts/dnd.sh",
-		"exec": "~/.config/waybar/scripts/dnd.sh",
-		"restart-interval": 1,
-		"tooltip": false,
-	},
-	"custom/music": {
-		"format": "  {}",
-		"escape": true,
-		"interval": 5,
-		"tooltip": false,
-		"exec": "playerctl metadata --format='{{artist}} - {{title}}'",
-		"on-click": "playerctl play-pause",
-		"on-scroll-up": "playerctl next",
-		"on-scroll-down": "playerctl previous",
-		"max-length": 50
+		"modules": ["clock", "clock#date"]
 	},
 	"clock": {
-		"tooltip-format": "<tt>{calendar}</tt>",
-		"format": "󰥔 {:%H:%M}",
+		"format": "{:%H:%M}",
+		"tooltip-format": "{calendar}",
 		"calendar": {
-			"mode"          : "month",
-			"mode-mon-col"  : 3,
-			"weeks-pos"     : "right",
-			"on-scroll"     : 1,
+			"mode": "month",
 			"format": {
-				"months":     "<span color='#cdd6f4' font_desc='HurmitNerdFont 14'><b>{}</b></span>",
-				"days":       "<span color='#cdd6f4' font_desc='HurmitNerdFont 14'>{}</span>",
-				"weeks":      "<span color='#a6e3a1' font_desc='HurmitNerdFont 14'>W{}</span>",
-				"weekdays":   "<span color='#89b4fa' font_desc='HurmitNerdFont 14'>{}</span>",
-				"today":      "<span color='#f38ba8' font_desc='HurmitNerdFont 14'><b><u>{}</u></b></span>"
+				"months": "<b>{}</b>",
+				"today": "<b><u>{}</u></b>",
 			}
 		},
-		"actions":  {
-			"on-click-right": "mode",
-			"on-scroll-up": "tz_up",
-			"on-scroll-down": "tz_down",
-			"on-scroll-up": "shift_up",
-			"on-scroll-down": "shift_down"
+	},
+	"clock#date": {
+		"format": "{:%a, %d %B}",
+		"tooltip-format": "{calendar}",
+		"calendar": {
+			"mode": "month",
+			"format": {
+				"months": "<b>{}</b>",
+				"today": "<b><u>{}</u></b>"
+			}
 		}
 	},
 
-	"pulseaudio": {
-		"scroll-step": 2,
-		"format": "{icon} {volume}%",
-		"format-muted": "",
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"show-special": true,
+		"special-visible-only": true,
 		"format-icons": {
-			"default": ["", "", " "]
+			"active": "",
+			"default": "",
+			"empty": ""
 		},
-		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"persistent-workspaces": {
+			"*": [1,2,3,4,5]
+		}
 	},
-	"network": {
-		"format-ethernet": "󰈀",
-		"format-wifi": "{icon}",
-		"format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
-		"format-linked": "",
-		"format-disconnected": "",
-		"tooltip-format-wifi": "{essid} {frequency}GHz\n {bandwidthUpBits}  {bandwidthDownBits}",
-		"tooltip-format-ethernet": "{ifname}\n {bandwidthUpBits}  {bandwidthDownBits}"
+	"hyprland/submap": {
+		"tooltip": false
+	},
+
+	"custom/music": {
+		"format": "  {}",
+		"escape": true,
+		"interval": 2,
+		"tooltip": false,
+		"exec": "playerctl -i firefox metadata --format='{{title}}'",
+		"on-click": "playerctl -i firefox play-pause",
+		"on-scroll-up": "playerctl next",
+		"on-scroll-down": "playerctl previous",
+		"max-length": 25
+	},
+
+	"custom/updates": {
+		"interval": 6000,
+		"exec": "~/.config/waybar/scripts/updates.sh",
+		"format": "󰏗 {text}",
+	},
+
+	"group/brightness": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		},
+		"modules": ["backlight", "backlight/slider"]
 	},
 	"backlight": {
 		"device": "intel_backlight",
-		"format": "{icon}",
-		"tooltip-format": "{percent}%",
-		"format-icons": ["", "", "", "", "", "", "", "", ""],
-		"on-scroll-up": "brightnessctl s 5%+",
-		"on-scroll-down": "brightnessctl s 5%-"
+		"format": "{icon} {percent}%",
+		"tooltip-format": "brightness {percent}%",
+		"format-icons": [""],
+		"on-scroll-up": "brightnessctl s 2%+",
+		"on-scroll-down": "brightnessctl s 2%- -n 2%"
 	},
+	"backlight/slider": {
+		"min": 2,
+		"max": 100,
+		"orientation": "inherit",
+	},
+
+	"group/audio": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"pulseaudio",
+			"pulseaudio#microphone",
+			"pulseaudio/slider"
+		]
+	},
+	"pulseaudio": {
+		"scroll-step": 2,
+		"format": "{icon} {volume}%",
+		"format-icons": {
+			"headphone": "󰋋",
+			"headphone-muted": "󰟎",
+			"headset": "󰋎",
+			"headset-muted": "󰋐",
+			"default": ["", "", " "],
+			"default-muted": ""
+		},
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	},
+	"pulseaudio#microphone": {
+		"format": "{format_source}",
+		"format-source": " {volume}%",
+		"format-source-muted": " {volume}%",
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%+ -l 1",
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-",
+		"tooltip-format": "{source_desc}",
+		"scroll-step": 2,
+	},
+	"pulseaudio/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "inherit"
+	},
+
+	"group/net": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		},
+		"modules": ["network#icon", "network#speed"]
+	},
+	"network#icon": {
+		"format-ethernet": "󰈀",
+		"format-wifi": "{icon}",
+		"format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+		"format-linked": "",
+		"format-disconnected": "",
+		"tooltip-format-wifi": "{essid} {frequency}GHz",
+		"tooltip-format-ethernet": "{ifname} via {gwaddr}",
+		"tooltip-format-diconnected": "Disconnected"
+	},
+	"network#speed": {
+		"format": " {bandwidthUpBits}  {bandwidthDownBits}",
+		"tooltip-format-wifi": "{essid} {frequency}GHz",
+		"tooltip-format-ethernet": "{ifname} via {gwaddr}",
+		"tooltip-format-diconnected": "Disconnected"
+	},
+
+	"group/abn": {
+		"orientation": "horizontal",
+		"modules": [
+			"group/brightness",
+			"group/audio",
+			"group/net"
+		]
+	},
+
 	"battery": {
+		"interval": 60,
 		"states": {
 			"warning": 30,
-			"critical": 20
+			"critical": 15,
+			"batprotect": 80
 		},
 		"format": "{icon}",
 		"format-charging": "󰂄",
 		"format-discharging-warning": "󱃍",
 		"format-discharging-critical": "󱃍",
 		"format-plugged": "󱟢",
-		"format-alt": "{icon}",
-		"format-icons": ["󰂎", "󰁺",  "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+		"format-plugged-batprotect": "󱈑",
+		"format-icons": [
+			"󰂎",
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹",
+		],
 		"tooltip-format": "{capacity}%\n{timeTo}"
 	},
-	"tray": {
-		"icon-size": 16,
-		"spacing": 2
+	"cpu": {
+		// "format": " {usage}%"
+		"format": " {icon}",
+		"format-icons": [
+			"󰄰",
+			"󰪞",
+			"󰪟",
+			"󰪠",
+			"󰪡",
+			"󰪢",
+			"󰪣",
+			"󰪤",
+			"󰪥"
+		]
 	},
-	"custom/power": {
+	"memory": {
+		"format": " {icon}",
+		"format-icons": [
+			"󰄰",
+			"󰪞",
+			"󰪟",
+			"󰪠",
+			"󰪡",
+			"󰪢",
+			"󰪣",
+			"󰪤",
+			"󰪥"
+		],
+		"tooltip-format": "{used:0.1f}GB/{total:0.1f}GB"
+	},
+	"group/motherboard": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"battery",
+			"cpu",
+			"memory"
+		]
+	},
+
+	"custom/powermenu": {
 		"tooltip": false,
-		"on-click": "~/.config/rofi/bin/powermenu.sh",
+		"on-click": "rofi -show powermenu -config powermenu.rasi",
 		"format": "⏻"
+	},
+
+
+	"group/systray": {
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": false
+		},
+		"modules": ["custom/expand", "tray"]
+	},
+	"custom/expand": {
+		"format": "",
+		"tooltip": false
+	},
+	"tray": {
+		"icon-size": 14,
+		"spacing": 4
 	}
 }
