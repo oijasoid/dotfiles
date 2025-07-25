@@ -6,7 +6,6 @@ autoload -Uz compinit
 autoload -Uz vcs_info
 
 # Compinit
-fpath=($HOME/.config/zsh/completions $fpath)
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=*' 'r:|=*'
 
@@ -27,6 +26,9 @@ vcs_info_wrapper() {
 }
 
 # Prompt
+prompt_col=12
+if [ "$EUID" = 0 ]; then prompt_col=9 fi
+
 custom_prompt() {
 	local retval=$?
 
@@ -36,11 +38,11 @@ custom_prompt() {
 		else
 			ret_string="%F{green}"
 		fi
-		echo " ${ret_string} %F{12} "
+		echo " ${ret_string} %F{$prompt_col} "
 		return
 	fi
 
-	echo " %F{7}%~ $(vcs_info_wrapper)\n %F{12} %F{default}"
+	echo " %F{7}%~ $(vcs_info_wrapper)\n %F{$prompt_col} %F{default}"
 }
 
 custom-zle-line-init() {
@@ -79,5 +81,15 @@ RPROMPT=$''
 
 source $ZPLUGINDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+source <(fzf --zsh)
+
 export DIFFPROG="nvim -d $1"
-alias vi="nvim"
+
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+alias ip="ip --color=auto"
+alias kill="/bin/kill"
+
+alias fzn='nvim "$(fzf --preview="cat {}")"'
+alias scd='cd "$(fzf --preview="if [ -d '{}' ]; then ls -la '{}'; else bat '{}'; fi" | xargs -r -I {} dirname "{}")"'
